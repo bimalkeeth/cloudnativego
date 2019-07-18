@@ -1,0 +1,15 @@
+version: '2'
+services:
+    microservice:
+      build: .
+      image: cloudnativego:1.0.1-alpine
+      environment:
+        - PORT=8080
+      ports:
+        - "8080:8080"
+    nginx:
+      image: "nginx:1.11.9"
+      ports:
+        - "8081:80"
+      links:
+        - microservice
